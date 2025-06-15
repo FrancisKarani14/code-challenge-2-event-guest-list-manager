@@ -13,4 +13,38 @@
 }
 #guestListContainer, .inputContainer{
     background-color: white;
+    box-shadow: 5px 5px 10px black;
+}
+.displayContainer{
+    display: flex;
+    gap: 20px;
+}
+.inputContainer{
+    width: auto;
+    padding: 10px;
+    height: 20vh;
+}
+#deletebtn{
+    background-color: red;
+}
+#addguestbtn{
+    background-color: aqua;
+}
+ul{
+    list-style: none;
+
+}
+#guestListContainer{
+    height: auto;
+    padding: 20px;
+    width: 40%;
+
+}
+li{
+    margin-top: 10px;
+    height: 20px;
+    background-color: rgba(128, 128, 128, 0.801);
+}
+button{
+    cursor: pointer;
 }
