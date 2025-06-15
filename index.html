@@ -3,32 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Guest List Manager</title>
+    <title>Event guest list manager</title>
     <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="https://media.istockphoto.com/id/1261718311/vector/calendar-schedule-icon-black-color.jpg?s=612x612&w=0&k=20&c=mF-IHjdDQjeE2eazerNcl2MDFmu0f6I29W09fAzv_vk=">
 </head>
 <body>
-    
     <div class="container">
-        <h1>Event Guest List Manager </h1>
-        <section class="items">
-        <div>
+        <div class="displayContainer">
+            <div class="inputContainer">
             <form action="">
-                <input type="text" placeholder="write guest name" id="nameInput">
-                <button id="submitBtn" onclick="addGuest(event)">submit</button>
-                <button>delete</button>
+                <input type="text" placeholder="add guest name" id="guestName">
+                <select name="category" id="category">
+                    <option value="friend">friend</option>
+                    <option value="family">family</option>
+                    <option value="colleague">colleague</option>
+                </select>
+                <button id="addguestbtn">Add Guest</button>
+                <button id="deletebtn">delete guest</button>
+                </div>
             </form>
+            <div id="guestListContainer">
+                <ul></ul>
+            </div>
         </div>
-
-        <div id="guestListDisplay" class="guestList">
-           <ul>
-
-           </ul>
-        </div>
-        </section>
-
     </div>
-   
-    <script src="./index.js"></script>
+  <script src="./index.js"></script>  
 </body>
 </html>
