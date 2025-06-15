@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event guest list manager</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Event Guest List Manager</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="displayContainer">
-            <div class="inputContainer">
-            <form action="">
-                <input type="text" placeholder="add guest name" id="guestName">
-                <select name="category" id="category">
-                    <option value="friend">friend</option>
-                    <option value="family">family</option>
-                    <option value="colleague">colleague</option>
-                </select>
-                <button id="addguestbtn" onclick="addGuestName(event)">Add Guest</button>
-                <button id="deletebtn">delete guest</button>
-                </div>
-            </form>
-            <div id="guestListContainer">
-                <ul>
-                   
-                </ul>
-            </div>
-        </div>
+  <div class="container">
+    <div class="displayContainers">
+    <form id="guestForm">
+      <input type="text" id="guestName" placeholder="Add guest name" required />
+      <select id="category">
+        <option value="Friend">Friend</option>
+        <option value="Family">Family</option>
+        <option value="Colleague">Colleague</option>
+      </select>
+      <button type="submit">Add Guest</button>
+    </form>
+
+    <div class="listItems">
+        <ul id="guestList">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
     </div>
-  <script src="./index.js"></script>  
+    </div>
+  </div>
+
+  <script src="src/index.js"></script>
 </body>
 </html>

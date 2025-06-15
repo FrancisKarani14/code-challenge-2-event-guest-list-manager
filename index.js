@@ -1,25 +1,109 @@
-// variable declarations for the buttons, the input names
-let addGuest = document.getElementById("guestName")
-// this is a guest list array that has not been declared
-let guestList = []
-let deleteBtn = document.getElementById("deleteBtn")
-// this function will add a guest name when the add guest button is clicked.
- function addGuestName(event) {
-    // prevents the form from submitting
-    event. preventDefeult();
-    // a variable that takes in the content keyed in the addguest variable
-    const guestName = addGuest.value.trim()
-    guestList.push(guestName)
-    //  condition to make sure a valid name is entered
-    if (guestName ==="") {
-        alert("enter a valid name")
-        return;
-        
-    }
-    // condition to limit the number of guests in a lis
-    if (guestList >10) {
-        alert("the list is full you cannot have more than 10 guests")
-        
-    }
-    
- }
+const guestForm = document.getElementById("guestForm");
+const guestNameInput = document.getElementById("guestName");
+const guestListElement = document.getElementById("guestList");
+const categoryInput = document.getElementById("category");
+
+let guestList = JSON.parse(localStorage.getItem("guestList")) || [];
+
+function saveGuests() {
+  localStorage.setItem("guestList", JSON.stringify(guestList));
+}
+
+function renderGuests() {
+  guestListElement.innerHTML = "";
+
+  guestList.forEach((guest, index) => {
+    const li = document.createElement("li");
+
+    const categoryTag = document.createElement("span");
+    categoryTag.textContent = guest.category;
+    categoryTag.classList.add("category-tag", `category-${guest.category}`);
+
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = guest.name;
+    nameSpan.contentEditable = false;
+
+    const rsvpBtn = document.createElement("button");
+    rsvpBtn.textContent = guest.rsvp ? "Attending" : "Not Attending";
+    rsvpBtn.style.marginLeft = "10px";
+    rsvpBtn.addEventListener("click", () => {
+      guest.rsvp = !guest.rsvp;
+      saveGuests();
+      renderGuests();
+    });
+
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.addEventListener("click", () => {
+      const newName = prompt("Enter new name:", guest.name);
+      if (newName) {
+        guest.name = newName.trim();
+        saveGuests();
+        renderGuests();
+      }
+    });
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Remove";
+    deleteBtn.addEventListener("click", () => {
+      guestList.splice(index, 1);
+      saveGuests();
+      renderGuests();
+    });
+
+    const timestamp = document.createElement("span");
+    timestamp.textContent = `Added: ${guest.time}`;
+    timestamp.classList.add("timestamp");
+
+    const leftSection = document.createElement("div");
+    leftSection.appendChild(categoryTag);
+    leftSection.appendChild(nameSpan);
+    leftSection.appendChild(timestamp);
+
+    const rightSection = document.createElement("div");
+    rightSection.appendChild(rsvpBtn);
+    rightSection.appendChild(editBtn);
+    rightSection.appendChild(deleteBtn);
+
+    li.appendChild(leftSection);
+    li.appendChild(rightSection);
+
+    li.style.display = "flex";
+    li.style.justifyContent = "space-between";
+    li.style.alignItems = "center";
+
+    guestListElement.appendChild(li);
+  });
+}
+
+guestForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const guestName = guestNameInput.value.trim();
+  const category = categoryInput.value;
+
+  if (guestList.length >= 10) {
+    alert("Guest limit reached (max 10).");
+    return;
+  }
+
+  if (!guestName) {
+    alert("Please enter a guest name.");
+    return;
+  }
+
+  const guest = {
+    name: guestName,
+    category: category,
+    rsvp: false,
+    time: new Date().toLocaleString(),
+  };
+
+  guestList.push(guest);
+  saveGuests();
+  renderGuests();
+
+  guestForm.reset();
+});
+
+renderGuests();
