@@ -8,14 +8,27 @@
     <link rel="icon" href="https://media.istockphoto.com/id/1261718311/vector/calendar-schedule-icon-black-color.jpg?s=612x612&w=0&k=20&c=mF-IHjdDQjeE2eazerNcl2MDFmu0f6I29W09fAzv_vk=">
 </head>
 <body>
+    
     <div class="container">
-        <h1>Event Guest List Manager</h1>
-        <form action="">
-            <label for="name"> Enter name</label>
-            <input type="text" placeholder="JOhn Doe"><br>
-            <button id="">submit</button>
-        </form>
+        <h1>Event Guest List Manager </h1>
+        <section class="items">
+        <div>
+            <form action="">
+                <input type="text" placeholder="write guest name" id="nameInput">
+                <button id="submitBtn" onclick="addGuest(event)">submit</button>
+                <button>delete</button>
+            </form>
+        </div>
+
+        <div id="guestListDisplay" class="guestList">
+           <ul>
+
+           </ul>
+        </div>
+        </section>
+
     </div>
+   
     <script src="./index.js"></script>
 </body>
 </html>
